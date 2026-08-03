@@ -26,7 +26,7 @@ Content is written locally (Keystatic or Markdoc files), then shipped via git br
 - Prefer editing content via Keystatic or `src/content/**/*.mdoc`, not hardcoding copy in pages.
 - Images for letters/entries live under `public/letters/` and `public/entries/`.
 - Sahaj Work status is a visual stub only — do not invent a live tracking backend unless asked.
-- Logo path: `public/brand/logo.svg`
+- Brand: `BrandWordmark` / `BrandLogo` (SF//RZA, accent `#80a2bf`); favicon `public/brand/mark.svg`
 - **No gradients / glows.** Theme: `localStorage.theme` or system preference → `html[data-theme]`.
 
 ## Docs in Cursor rules

@@ -1,12 +1,12 @@
 ---
 import SahajStatus from './SahajStatus.astro';
+import BrandWordmark from './BrandWordmark.astro';
 ---
 
 <footer class="site-footer">
 	<div class="shell footer-inner">
 		<div class="footer-brand">
-			<img src="/brand/logo.svg" alt="" width="22" height="22" />
-			<span>Leonardo Sforza</span>
+			<BrandWordmark />
 		</div>
 		<SahajStatus />
 		<p class="footer-note">Letters written locally, shipped through git.</p>
@@ -27,12 +27,7 @@ import SahajStatus from './SahajStatus.astro';
 	}
 
 	.footer-brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-family: var(--font-ui);
-		font-size: 0.9rem;
-		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.footer-note {

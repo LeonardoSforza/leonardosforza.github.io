@@ -8,27 +8,29 @@ alwaysApply: false
 
 Tokens live in `src/styles/tokens.css`. Use CSS variables — do not hardcode one-off palette values in components.
 
+## Brand
+
+- Mark: double slash `//` (`public/brand/mark.svg`) — steel blue `#80a2bf`
+- Short wordmark: `BrandWordmark` → **SF//RZA** (header/footer)
+- Full logo: `BrandLogo` → SF//RZA + **LEONARDO SFORZA** subtitle (home hero)
+- Letters follow `currentColor` / `--ink`; slashes stay `#80a2bf` in both themes
+
 ## Direction
 
-- **Notion-flat:** solid surfaces, hairline borders, no gradients, no glows, no jade/purple “AI” looks
+- **Notion-flat:** solid surfaces, hairline borders, no gradients, no glows
 - Light: `#ffffff` / `#f7f6f3` · Dark: `#191919` / `#202020` via `html[data-theme]`
-- Accent: Notion blue `#2383e2`
+- Accent: logo steel blue `#80a2bf` (not Notion UI blue)
 - UI type: Inter · Letter prose (`.prose`): Source Serif 4 / Georgia
-- Icons: Lucide-style stroke icons (see `ThemeToggle`)
-- Motion: progress bar only; do not reintroduce entrance stagger/rise
+- Motion: progress bar only; no entrance stagger/rise
 
 ## Theme
 
 - FOUC script in `BaseLayout` sets `data-theme` from `localStorage.theme` or `prefers-color-scheme`
 - `ThemeToggle` in `SiteHeader` flips light ↔ dark and persists
-- Update `meta theme-color` when theme changes (`#ffffff` / `#191919`)
+- `meta theme-color`: `#ffffff` / `#191919`
 
 ## Composition
 
-- Home first viewport: brand (logo + Leonardo Sforza) + one line + CTA group only
-- No cards in the hero; list cards stay flat (border + hover fill), not elevated shadows
-- Avoid: gradients, frosted blur headers, pill-glow buttons, Fraunces/display-serif chrome
-
-## Brand
-
-Logo slot: `public/brand/logo.svg`. Keep header brand name visible; do not demote the name to tiny nav-only text on marketing surfaces.
+- Home first viewport: full brand logo + one line + CTA group only
+- Flat list cards (border + hover fill), no elevated shadows
+- Avoid: gradients, frosted blur headers, pill-glow buttons, generic placeholder “L” marks

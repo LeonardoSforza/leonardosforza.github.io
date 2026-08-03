@@ -12,20 +12,21 @@
 	--ink-muted: rgba(55, 53, 47, 0.65);
 	--ink-faint: rgba(55, 53, 47, 0.45);
 
-	--accent: #2383e2;
-	--accent-soft: rgba(35, 131, 226, 0.12);
-	--accent-strong: #0b6bcb;
-	--accent-contrast: #ffffff;
+	/* FORCE OF SFORZA steel blue from logo // */
+	--accent: #80a2bf;
+	--accent-soft: rgba(128, 162, 191, 0.16);
+	--accent-strong: #5f849e;
+	--accent-contrast: #111111;
 
 	--border: rgba(55, 53, 47, 0.09);
 	--border-strong: rgba(55, 53, 47, 0.16);
-	--focus: #2383e2;
+	--focus: #80a2bf;
 
 	--danger: #e03e3e;
 
 	--sahaj-0: rgba(55, 53, 47, 0.06);
-	--sahaj-1: rgba(35, 131, 226, 0.28);
-	--sahaj-2: rgba(35, 131, 226, 0.55);
+	--sahaj-1: rgba(128, 162, 191, 0.35);
+	--sahaj-2: rgba(128, 162, 191, 0.65);
 
 	--header-bg: #ffffff;
 	--theme-meta: #ffffff;
@@ -44,20 +45,20 @@
 	--ink-muted: rgba(255, 255, 255, 0.443);
 	--ink-faint: rgba(255, 255, 255, 0.282);
 
-	--accent: #2383e2;
-	--accent-soft: rgba(35, 131, 226, 0.2);
-	--accent-strong: #5ba3ea;
-	--accent-contrast: #ffffff;
+	--accent: #80a2bf;
+	--accent-soft: rgba(128, 162, 191, 0.22);
+	--accent-strong: #a3bfd4;
+	--accent-contrast: #111111;
 
 	--border: rgba(255, 255, 255, 0.094);
 	--border-strong: rgba(255, 255, 255, 0.14);
-	--focus: #2383e2;
+	--focus: #80a2bf;
 
 	--danger: #ff7369;
 
 	--sahaj-0: rgba(255, 255, 255, 0.06);
-	--sahaj-1: rgba(35, 131, 226, 0.32);
-	--sahaj-2: rgba(35, 131, 226, 0.58);
+	--sahaj-1: rgba(128, 162, 191, 0.38);
+	--sahaj-2: rgba(128, 162, 191, 0.7);
 
 	--header-bg: #191919;
 	--theme-meta: #191919;

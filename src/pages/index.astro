@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import LetterCard from '../components/LetterCard.astro';
+import BrandLogo from '../components/BrandLogo.astro';
 import { getCollection } from 'astro:content';
 
 const letters = (await getCollection('letters'))
@@ -20,8 +21,8 @@ const featured = letters[0];
 >
 	<section class="hero shell">
 		<div class="hero-brand">
-			<img class="logo" src="/brand/logo.svg" alt="" width="64" height="64" />
-			<h1>Leonardo Sforza</h1>
+			<h1 class="sr-only">Leonardo Sforza</h1>
+			<BrandLogo />
 		</div>
 		<p class="lede">Personal letters — written on the road, shared like a quiet newsletter.</p>
 		<div class="cta">
@@ -65,27 +66,13 @@ const featured = letters[0];
 		min-height: calc(100svh - 2.85rem);
 		display: grid;
 		align-content: center;
-		gap: var(--space-4);
+		gap: var(--space-5);
 		padding: var(--space-8) 0 var(--space-7);
 	}
 
 	.hero-brand {
 		display: grid;
 		justify-items: start;
-		gap: var(--space-3);
-	}
-
-	.logo {
-		width: 3.5rem;
-		height: 3.5rem;
-		border-radius: var(--radius-md);
-	}
-
-	h1 {
-		margin: 0;
-		font-size: clamp(2.25rem, 6vw, 3.25rem);
-		font-weight: 700;
-		letter-spacing: -0.03em;
 	}
 
 	.lede {
@@ -101,7 +88,7 @@ const featured = letters[0];
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-2);
-		margin-top: var(--space-2);
+		margin-top: var(--space-1);
 	}
 
 	.latest {

@@ -1,22 +1,27 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import BrandLogo from '../components/BrandLogo.astro';
 ---
 
 <SiteLayout title="About" description="About Leonardo Sforza and these letters.">
-	<section class="shell page prose motion-rise">
+	<section class="shell page">
 		<p class="eyebrow">About</p>
-		<h1>Leonardo Sforza</h1>
-		<p>
-			These pages are my letters — a quieter way to share journeys, Sahaja work, and the things that
-			don’t fit in a feed.
-		</p>
-		<p>
-			I write locally with a Notion-like editor, then ship each change through git: branch, commit,
-			pull request, GitHub Pages.
-		</p>
-		<p>
-			<a href="/letters/">Read the letters →</a>
-		</p>
+		<div class="about-brand">
+			<BrandLogo />
+		</div>
+		<div class="prose">
+			<p>
+				These pages are my letters — a quieter way to share journeys, Sahaja work, and the things
+				that don’t fit in a feed.
+			</p>
+			<p>
+				I write locally with a Notion-like editor, then ship each change through git: branch,
+				commit, pull request, GitHub Pages.
+			</p>
+			<p>
+				<a href="/letters/">Read the letters →</a>
+			</p>
+		</div>
 	</section>
 </SiteLayout>
 
@@ -26,12 +31,16 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 	}
 
 	.eyebrow {
-		margin: 0 0 var(--space-2);
+		margin: 0 0 var(--space-4);
 		font-family: var(--font-ui);
 		font-size: 0.78rem;
-		letter-spacing: 0.1em;
+		letter-spacing: 0.04em;
 		text-transform: uppercase;
 		color: var(--ink-muted);
-		letter-spacing: 0.04em;
+	}
+
+	.about-brand {
+		margin-bottom: var(--space-6);
+		max-width: 16rem;
 	}
 </style>

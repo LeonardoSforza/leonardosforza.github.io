@@ -44,7 +44,9 @@ Markdoc supports headings, lists, links, images, tables, column layouts, plus cu
 
 ## Brand / logo
 
-Drop your logo at [`public/brand/logo.svg`](public/brand/logo.svg) (SVG or replace with PNG and update references). A temporary wordmark ships until then.
+- Mark (`//`): [`public/brand/mark.svg`](public/brand/mark.svg)
+- Wordmark / full logo: `BrandWordmark` + `BrandLogo` Astro components (SF//RZA, steel blue `#80a2bf`)
+- Source files live in your FORCE OF SFORZA pack; only the web assets above ship in-repo.
 
 ## Canada migration
 
