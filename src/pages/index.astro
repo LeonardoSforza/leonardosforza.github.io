@@ -19,14 +19,12 @@ const featured = letters[0];
 	description="Personal letters from Leonardo Sforza — travel, Sahaja, and the road in between."
 >
 	<section class="hero shell">
-		<div class="hero-brand motion-rise">
-			<img class="logo" src="/brand/logo.svg" alt="" width="88" height="88" />
+		<div class="hero-brand">
+			<img class="logo" src="/brand/logo.svg" alt="" width="64" height="64" />
 			<h1>Leonardo Sforza</h1>
 		</div>
-		<p class="lede motion-rise" style="animation-delay: 120ms">
-			Personal letters — written on the road, shared like a quiet newsletter.
-		</p>
-		<div class="cta motion-rise" style="animation-delay: 220ms">
+		<p class="lede">Personal letters — written on the road, shared like a quiet newsletter.</p>
+		<div class="cta">
 			<a class="btn btn-primary" href="/letters/">Read the letters</a>
 			{
 				featured && (
@@ -41,11 +39,11 @@ const featured = letters[0];
 	{
 		letters.length > 0 && (
 			<section class="latest shell">
-				<div class="section-head motion-fade">
+				<div class="section-head">
 					<h2>Latest letter</h2>
 					<a href="/letters/">All letters</a>
 				</div>
-				<div class="grid motion-stagger">
+				<div class="grid">
 					{letters.slice(0, 3).map((letter) => (
 						<LetterCard
 							title={letter.data.title}
@@ -64,46 +62,52 @@ const featured = letters[0];
 
 <style>
 	.hero {
-		min-height: calc(100svh - 4.25rem);
+		min-height: calc(100svh - 2.85rem);
 		display: grid;
 		align-content: center;
-		gap: var(--space-5);
+		gap: var(--space-4);
 		padding: var(--space-8) 0 var(--space-7);
 	}
 
 	.hero-brand {
 		display: grid;
 		justify-items: start;
-		gap: var(--space-4);
+		gap: var(--space-3);
 	}
 
 	.logo {
-		width: 5.5rem;
-		height: 5.5rem;
-		filter: drop-shadow(0 12px 30px rgba(109, 184, 154, 0.18));
+		width: 3.5rem;
+		height: 3.5rem;
+		border-radius: var(--radius-md);
 	}
 
 	h1 {
 		margin: 0;
-		font-size: clamp(3rem, 8vw, 5.6rem);
+		font-size: clamp(2.25rem, 6vw, 3.25rem);
+		font-weight: 700;
+		letter-spacing: -0.03em;
 	}
 
 	.lede {
 		max-width: 28rem;
 		margin: 0;
-		font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+		font-size: 1.05rem;
+		line-height: 1.5;
 		color: var(--ink-muted);
+		font-family: var(--font-ui);
 	}
 
 	.cta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-3);
+		gap: var(--space-2);
 		margin-top: var(--space-2);
 	}
 
 	.latest {
 		padding-bottom: var(--space-8);
+		border-top: 1px solid var(--border);
+		padding-top: var(--space-7);
 	}
 
 	.section-head {
@@ -116,22 +120,24 @@ const featured = letters[0];
 
 	.section-head h2 {
 		margin: 0;
+		font-size: 1.25rem;
 	}
 
 	.section-head a {
 		font-family: var(--font-ui);
-		font-size: 0.9rem;
+		font-size: 0.875rem;
 		text-decoration: none;
 		color: var(--ink-muted);
 	}
 
 	.section-head a:hover {
-		color: var(--accent-strong);
+		color: var(--ink);
+		background: var(--bg-hover);
 	}
 
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-		gap: var(--space-5);
+		gap: var(--space-4);
 	}
 </style>

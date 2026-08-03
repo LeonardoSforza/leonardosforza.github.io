@@ -1,13 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Leonardo Sforza">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#121821"/>
-      <stop offset="1" stop-color="#0c1016"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="980" cy="120" r="220" fill="#6db89a" opacity="0.12"/>
-  <circle cx="180" cy="520" r="260" fill="#4f8f9a" opacity="0.1"/>
-  <text x="96" y="320" fill="#e8eef4" font-family="Georgia, serif" font-size="84" font-weight="600">Leonardo Sforza</text>
-  <text x="96" y="390" fill="#8fd4b4" font-family="Georgia, serif" font-size="36">Personal letters</text>
+  <rect width="1200" height="630" fill="#191919"/>
+  <rect x="72" y="72" width="72" height="72" rx="10" fill="#2383e2"/>
+  <text x="168" y="122" fill="#ffffff" font-family="Inter, Helvetica, Arial, sans-serif" font-size="36" font-weight="600">LS</text>
+  <text x="72" y="320" fill="rgba(255,255,255,0.9)" font-family="Inter, Helvetica, Arial, sans-serif" font-size="72" font-weight="700">Leonardo Sforza</text>
+  <text x="72" y="390" fill="rgba(255,255,255,0.45)" font-family="Inter, Helvetica, Arial, sans-serif" font-size="28">Personal letters</text>
 </svg>

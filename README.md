@@ -9,6 +9,7 @@ Personal letters site: travel, Sahaja, and everything that doesn’t fit in a fe
 - **Astro** (static) → GitHub Pages
 - **Keystatic** (local mode) → Notion-like editor at `/keystatic` while developing
 - **Markdoc** → letters & journal entries as files in git
+- **Theme** → light/dark Notion-flat tokens; header sun/moon toggle (remembers choice)
 
 ## Local workflow
 

@@ -12,10 +12,7 @@ const letters = (await getCollection('letters'))
 	});
 ---
 
-<SiteLayout
-	title="Letters"
-	description="All letters from Leonardo Sforza."
->
+<SiteLayout title="Letters" description="All letters from Leonardo Sforza.">
 	<section class="shell page">
 		<header class="motion-rise">
 			<p class="eyebrow">Archive</p>
@@ -25,7 +22,9 @@ const letters = (await getCollection('letters'))
 
 		{
 			letters.length === 0 ? (
-				<p class="empty">No published letters yet. Open /keystatic locally to write the first one.</p>
+				<p class="empty">
+					No published letters yet. Open /keystatic locally to write the first one.
+				</p>
 			) : (
 				<div class="grid motion-stagger">
 					{letters.map((letter) => (
@@ -55,7 +54,8 @@ const letters = (await getCollection('letters'))
 		font-size: 0.78rem;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--accent-strong);
+		color: var(--ink-muted);
+		letter-spacing: 0.04em;
 	}
 
 	.lede {

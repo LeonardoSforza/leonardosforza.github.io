@@ -14,18 +14,20 @@ const { type = 'note' } = Astro.props;
 	.callout {
 		margin: var(--space-5) 0;
 		padding: var(--space-4) var(--space-5);
-		border-radius: var(--radius);
+		border-radius: var(--radius-md);
 		border: 1px solid var(--border);
-		background: rgba(255, 255, 255, 0.03);
+		background: var(--bg-elevated);
+		font-family: var(--font-ui);
+		font-size: 0.95rem;
 	}
 
 	.callout.note {
-		border-color: rgba(109, 184, 154, 0.35);
+		border-color: rgba(35, 131, 226, 0.35);
 		background: var(--accent-soft);
 	}
 
 	.callout.warn {
-		border-color: rgba(224, 122, 106, 0.4);
-		background: rgba(224, 122, 106, 0.1);
+		border-color: rgba(224, 62, 62, 0.35);
+		background: rgba(224, 62, 62, 0.08);
 	}
 </style>

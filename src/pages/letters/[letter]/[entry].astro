@@ -38,16 +38,12 @@ const homeHref = `/letters/${entry.data.letter}/`;
 		homeHref={homeHref}
 		index={index + 1}
 		total={siblings.length}
-		prev={
-			prev
-				? { href: `/letters/${entry.data.letter}/${prev.id}/`, title: prev.data.title }
-				: null
-		}
-		next={
-			next
-				? { href: `/letters/${entry.data.letter}/${next.id}/`, title: next.data.title }
-				: null
-		}
+		prev={prev
+			? { href: `/letters/${entry.data.letter}/${prev.id}/`, title: prev.data.title }
+			: null}
+		next={next
+			? { href: `/letters/${entry.data.letter}/${next.id}/`, title: next.data.title }
+			: null}
 	/>
 
 	<article>
@@ -113,14 +109,14 @@ const homeHref = `/letters/${entry.data.letter}/`;
 		gap: 0.5rem;
 		margin: 0;
 		font-family: var(--font-ui);
-		font-size: 0.78rem;
-		letter-spacing: 0.08em;
+		font-size: 0.75rem;
+		letter-spacing: 0.04em;
 		text-transform: uppercase;
 		color: var(--ink-faint);
 	}
 
 	.eyebrow a {
-		color: var(--accent-strong);
+		color: var(--accent);
 		text-decoration: none;
 	}
 

@@ -11,7 +11,8 @@ Content is written locally (Keystatic or Markdoc files), then shipped via git br
 - Astro static site
 - Keystatic local CMS (`storage.kind: 'local'`) — **dev only** (`astro dev`); not on production Pages
 - Markdoc content collections: `letters`, `entries`
-- Design tokens: `src/styles/tokens.css`
+- Design tokens: `src/styles/tokens.css` (Notion-flat light/dark via `data-theme`)
+- Theme toggle in header; FOUC script in `BaseLayout`
 
 ## Commands
 
@@ -26,6 +27,7 @@ Content is written locally (Keystatic or Markdoc files), then shipped via git br
 - Images for letters/entries live under `public/letters/` and `public/entries/`.
 - Sahaj Work status is a visual stub only — do not invent a live tracking backend unless asked.
 - Logo path: `public/brand/logo.svg`
+- **No gradients / glows.** Theme: `localStorage.theme` or system preference → `html[data-theme]`.
 
 ## Docs in Cursor rules
 

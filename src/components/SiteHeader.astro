@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 const pathname = Astro.url.pathname;
 const links = [
 	{ href: '/letters/', label: 'Letters' },
@@ -9,21 +11,21 @@ const links = [
 <header class="site-header">
 	<div class="shell header-inner">
 		<a class="brand" href="/" aria-label="Leonardo Sforza home">
-			<img class="brand-logo" src="/brand/logo.svg" alt="" width="40" height="40" />
+			<img class="brand-logo" src="/brand/logo.svg" alt="" width="32" height="32" />
 			<span class="brand-name">Leonardo Sforza</span>
 		</a>
-		<nav class="nav" aria-label="Primary">
-			{
-				links.map((link) => (
-					<a
-						href={link.href}
-						aria-current={pathname.startsWith(link.href) ? 'page' : undefined}
-					>
-						{link.label}
-					</a>
-				))
-			}
-		</nav>
+		<div class="header-actions">
+			<nav class="nav" aria-label="Primary">
+				{
+					links.map((link) => (
+						<a href={link.href} aria-current={pathname.startsWith(link.href) ? 'page' : undefined}>
+							{link.label}
+						</a>
+					))
+				}
+			</nav>
+			<ThemeToggle />
+		</div>
 	</div>
 </header>
 
@@ -32,8 +34,7 @@ const links = [
 		position: sticky;
 		top: 0;
 		z-index: 40;
-		backdrop-filter: blur(14px);
-		background: rgba(12, 16, 22, 0.72);
+		background: var(--header-bg);
 		border-bottom: 1px solid var(--border);
 	}
 
@@ -42,50 +43,69 @@ const links = [
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-4);
-		min-height: 4.25rem;
+		min-height: 2.85rem;
 	}
 
 	.brand {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.75rem;
+		gap: 0.55rem;
 		text-decoration: none;
 		color: var(--ink);
 		min-width: 0;
 	}
 
+	.brand:hover {
+		background: transparent;
+		color: var(--ink);
+	}
+
 	.brand-logo {
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 1.75rem;
+		height: 1.75rem;
 		flex-shrink: 0;
+		border-radius: var(--radius);
 	}
 
 	.brand-name {
-		font-family: var(--font-display);
-		font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+		font-family: var(--font-ui);
+		font-size: 0.95rem;
 		font-weight: 600;
-		letter-spacing: -0.02em;
+		letter-spacing: -0.01em;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
 	.nav {
 		display: flex;
 		align-items: center;
-		gap: 1.25rem;
+		gap: 0.15rem;
 		font-family: var(--font-ui);
-		font-size: 0.92rem;
-		font-weight: 560;
+		font-size: 0.875rem;
+		font-weight: 500;
 	}
 
 	.nav a {
 		color: var(--ink-muted);
 		text-decoration: none;
+		padding: 0.3rem 0.55rem;
+		border-radius: var(--radius-md);
 	}
 
-	.nav a:hover,
+	.nav a:hover {
+		background: var(--bg-hover);
+		color: var(--ink);
+	}
+
 	.nav a[aria-current='page'] {
 		color: var(--ink);
+		background: var(--bg-hover);
 	}
 </style>

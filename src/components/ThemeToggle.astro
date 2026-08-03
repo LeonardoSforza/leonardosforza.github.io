@@ -1,0 +1,118 @@
+---
+/**
+ * Light / dark theme toggle.
+ * Preference: localStorage.theme → system prefers-color-scheme.
+ * FOUC prevention lives in BaseLayout inline script.
+ */
+---
+
+<button
+	type="button"
+	class="theme-toggle"
+	id="theme-toggle"
+	aria-label="Toggle color theme"
+	title="Toggle light / dark"
+>
+	<span class="icon icon-sun" aria-hidden="true">
+		<!-- Lucide sun -->
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="18"
+			height="18"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<circle cx="12" cy="12" r="4"></circle>
+			<path d="M12 2v2"></path>
+			<path d="M12 20v2"></path>
+			<path d="m4.93 4.93 1.41 1.41"></path>
+			<path d="m17.66 17.66 1.41 1.41"></path>
+			<path d="M2 12h2"></path>
+			<path d="M20 12h2"></path>
+			<path d="m6.34 17.66-1.41 1.41"></path>
+			<path d="m19.07 4.93-1.41 1.41"></path>
+		</svg>
+	</span>
+	<span class="icon icon-moon" aria-hidden="true">
+		<!-- Lucide moon -->
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="18"
+			height="18"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+		</svg>
+	</span>
+</button>
+
+<script is:inline>
+	(function () {
+		var btn = document.getElementById('theme-toggle');
+		if (!btn) return;
+
+		function current() {
+			return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+		}
+
+		function apply(theme) {
+			document.documentElement.setAttribute('data-theme', theme);
+			document.documentElement.style.colorScheme = theme;
+			try {
+				localStorage.setItem('theme', theme);
+			} catch (e) {}
+			var meta = document.querySelector('meta[name="theme-color"]');
+			if (meta) meta.setAttribute('content', theme === 'dark' ? '#191919' : '#ffffff');
+			btn.setAttribute(
+				'aria-label',
+				theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme',
+			);
+		}
+
+		btn.addEventListener('click', function () {
+			apply(current() === 'dark' ? 'light' : 'dark');
+		});
+
+		apply(current());
+	})();
+</script>
+
+<style>
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		padding: 0;
+		border: none;
+		border-radius: var(--radius-md);
+		background: transparent;
+		color: var(--ink-muted);
+		cursor: pointer;
+	}
+
+	.theme-toggle:hover {
+		background: var(--bg-hover);
+		color: var(--ink);
+	}
+
+	.icon {
+		display: none;
+		line-height: 0;
+	}
+
+	:global([data-theme='light']) .icon-moon,
+	:global([data-theme='dark']) .icon-sun {
+		display: block;
+	}
+</style>
