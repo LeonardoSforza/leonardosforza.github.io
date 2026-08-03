@@ -1,0 +1,25 @@
+---
+description: Design system tokens, typography, layout, and anti-patterns
+globs: src/**/*.{astro,css,tsx,jsx}
+alwaysApply: false
+---
+
+# Design system
+
+Tokens live in `src/styles/tokens.css`. Use CSS variables — do not hardcode one-off palette values in components.
+
+## Direction
+
+- Cool slate atmosphere, jade accent (`--accent`), intimate letter feel
+- Display: Fraunces · Body: Source Serif 4 · UI: DM Sans
+- Motion: rise-in, stagger, entry progress — respect `prefers-reduced-motion`
+
+## Composition
+
+- Home first viewport: brand (logo + Leonardo Sforza) + one line + CTA group only
+- No cards in the hero; cards only when they aid browsing (letter/entry lists)
+- Avoid: purple gradients, cream+terracotta defaults, broadsheet hairline layouts, Inter/Roboto/system-only stacks, emoji decoration spam
+
+## Brand
+
+Logo slot: `public/brand/logo.svg`. Keep header brand name hero-visible; do not demote the name to tiny nav-only text on marketing surfaces.

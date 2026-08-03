@@ -1,0 +1,137 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import LetterCard from '../components/LetterCard.astro';
+import { getCollection } from 'astro:content';
+
+const letters = (await getCollection('letters'))
+	.filter((letter) => letter.data.status === 'published')
+	.sort((a, b) => {
+		const da = a.data.publishedAt?.getTime() ?? 0;
+		const db = b.data.publishedAt?.getTime() ?? 0;
+		return db - da;
+	});
+
+const featured = letters[0];
+---
+
+<SiteLayout
+	title="Leonardo Sforza"
+	description="Personal letters from Leonardo Sforza — travel, Sahaja, and the road in between."
+>
+	<section class="hero shell">
+		<div class="hero-brand motion-rise">
+			<img class="logo" src="/brand/logo.svg" alt="" width="88" height="88" />
+			<h1>Leonardo Sforza</h1>
+		</div>
+		<p class="lede motion-rise" style="animation-delay: 120ms">
+			Personal letters — written on the road, shared like a quiet newsletter.
+		</p>
+		<div class="cta motion-rise" style="animation-delay: 220ms">
+			<a class="btn btn-primary" href="/letters/">Read the letters</a>
+			{
+				featured && (
+					<a class="btn btn-ghost" href={`/letters/${featured.id}/`}>
+						Latest: {featured.data.title}
+					</a>
+				)
+			}
+		</div>
+	</section>
+
+	{
+		letters.length > 0 && (
+			<section class="latest shell">
+				<div class="section-head motion-fade">
+					<h2>Latest letter</h2>
+					<a href="/letters/">All letters</a>
+				</div>
+				<div class="grid motion-stagger">
+					{letters.slice(0, 3).map((letter) => (
+						<LetterCard
+							title={letter.data.title}
+							href={`/letters/${letter.id}/`}
+							summary={letter.data.summary}
+							icon={letter.data.icon}
+							date={letter.data.publishedAt}
+							cover={letter.data.cover}
+						/>
+					))}
+				</div>
+			</section>
+		)
+	}
+</SiteLayout>
+
+<style>
+	.hero {
+		min-height: calc(100svh - 4.25rem);
+		display: grid;
+		align-content: center;
+		gap: var(--space-5);
+		padding: var(--space-8) 0 var(--space-7);
+	}
+
+	.hero-brand {
+		display: grid;
+		justify-items: start;
+		gap: var(--space-4);
+	}
+
+	.logo {
+		width: 5.5rem;
+		height: 5.5rem;
+		filter: drop-shadow(0 12px 30px rgba(109, 184, 154, 0.18));
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(3rem, 8vw, 5.6rem);
+	}
+
+	.lede {
+		max-width: 28rem;
+		margin: 0;
+		font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+		color: var(--ink-muted);
+	}
+
+	.cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-2);
+	}
+
+	.latest {
+		padding-bottom: var(--space-8);
+	}
+
+	.section-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--space-4);
+		margin-bottom: var(--space-5);
+	}
+
+	.section-head h2 {
+		margin: 0;
+	}
+
+	.section-head a {
+		font-family: var(--font-ui);
+		font-size: 0.9rem;
+		text-decoration: none;
+		color: var(--ink-muted);
+	}
+
+	.section-head a:hover {
+		color: var(--accent-strong);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		gap: var(--space-5);
+	}
+</style>

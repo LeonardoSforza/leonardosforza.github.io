@@ -1,42 +1,34 @@
 {
-  "name": "capture",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.2.2",
-    "framer-motion": "^2.9.4",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-intersection-observer": "^8.30.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.0",
-    "styled-components": "^5.2.1",
-    "web-vitals": "^0.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "leonardosforza.github.io",
+	"type": "module",
+	"version": "0.1.0",
+	"private": true,
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"migrate:canada": "node scripts/migrate-canada.mjs",
+		"optimize:images": "bash scripts/optimize-images.sh"
+	},
+	"dependencies": {
+		"@astrojs/markdoc": "^2.0.6",
+		"@astrojs/react": "^6.0.2",
+		"@keystatic/astro": "^5.2.0",
+		"@keystatic/core": "^0.6.4",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.4",
+		"astro": "^7.1.6",
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8"
+	},
+	"devDependencies": {
+		"prettier": "^3.9.6",
+		"prettier-plugin-astro": "^0.14.1"
+	}
 }

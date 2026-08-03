@@ -1,0 +1,76 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import LetterCard from '../../components/LetterCard.astro';
+import { getCollection } from 'astro:content';
+
+const letters = (await getCollection('letters'))
+	.filter((letter) => letter.data.status === 'published')
+	.sort((a, b) => {
+		const da = a.data.publishedAt?.getTime() ?? 0;
+		const db = b.data.publishedAt?.getTime() ?? 0;
+		return db - da;
+	});
+---
+
+<SiteLayout
+	title="Letters"
+	description="All letters from Leonardo Sforza."
+>
+	<section class="shell page">
+		<header class="motion-rise">
+			<p class="eyebrow">Archive</p>
+			<h1>Letters</h1>
+			<p class="lede">Long-form notes — journeys, programs, and everything in between.</p>
+		</header>
+
+		{
+			letters.length === 0 ? (
+				<p class="empty">No published letters yet. Open /keystatic locally to write the first one.</p>
+			) : (
+				<div class="grid motion-stagger">
+					{letters.map((letter) => (
+						<LetterCard
+							title={letter.data.title}
+							href={`/letters/${letter.id}/`}
+							summary={letter.data.summary}
+							icon={letter.data.icon}
+							date={letter.data.publishedAt}
+							cover={letter.data.cover}
+						/>
+					))}
+				</div>
+			)
+		}
+	</section>
+</SiteLayout>
+
+<style>
+	.page {
+		padding-top: var(--space-8);
+	}
+
+	.eyebrow {
+		margin: 0 0 var(--space-2);
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+
+	.lede {
+		max-width: 34rem;
+		color: var(--ink-muted);
+		margin-bottom: var(--space-7);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		gap: var(--space-5);
+	}
+
+	.empty {
+		color: var(--ink-muted);
+	}
+</style>

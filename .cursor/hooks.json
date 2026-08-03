@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"hooks": {
+		"sessionStart": [
+			{
+				"command": ".cursor/hooks/session-start.sh"
+			}
+		],
+		"afterFileEdit": [
+			{
+				"command": ".cursor/hooks/format.sh"
+			}
+		],
+		"beforeShellExecution": [
+			{
+				"command": ".cursor/hooks/block-destructive-git.sh",
+				"failClosed": false
+			}
+		]
+	}
+}

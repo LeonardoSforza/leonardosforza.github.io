@@ -1,0 +1,15 @@
+---
+description: Astro pages, Keystatic config, and static deploy constraints
+globs: "{astro.config.mjs,keystatic.config.ts,src/pages/**/*,src/content.config.ts,markdoc.config.mjs}"
+alwaysApply: false
+---
+
+# Astro + Keystatic
+
+- `astro.config.mjs` enables Keystatic **only when `astro dev`** so production stays pure static for GitHub Pages
+- Site URL: `https://leonardosforza.github.io` (`base: '/'` for user Pages)
+- Content collections defined in `src/content.config.ts` must stay aligned with `keystatic.config.ts`
+- Letter route: `/letters/[letter]/` · Entry route: `/letters/[letter]/[entry]/`
+- After schema changes, verify `npm run build` still prerenders all published letters/entries
+
+Do not add a server adapter unless the user explicitly wants hosted Keystatic on production.

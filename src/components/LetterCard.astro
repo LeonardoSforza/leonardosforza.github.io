@@ -1,0 +1,118 @@
+---
+interface Props {
+	title: string;
+	href: string;
+	summary?: string;
+	icon?: string;
+	date?: Date | string | null;
+	cover?: string | null;
+}
+
+const { title, href, summary = '', icon = '✉️', date, cover } = Astro.props;
+
+const dateLabel = date
+	? new Date(date).toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'short',
+			year: 'numeric',
+		})
+	: null;
+---
+
+<a class="letter-card" href={href}>
+	{
+		cover ? (
+			<div class="cover-wrap">
+				<img src={cover} alt="" loading="lazy" />
+			</div>
+		) : (
+			<div class="cover-fallback" aria-hidden="true">
+				{icon}
+			</div>
+		)
+	}
+	<div class="body">
+		<div class="meta">
+			<span class="icon" aria-hidden="true">{icon}</span>
+			{dateLabel && <time datetime={new Date(date!).toISOString()}>{dateLabel}</time>}
+		</div>
+		<h3>{title}</h3>
+		{summary && <p>{summary}</p>}
+	</div>
+</a>
+
+<style>
+	.letter-card {
+		display: grid;
+		grid-template-rows: 11rem auto;
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid var(--border);
+		border-radius: calc(var(--radius) + 6px);
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.025);
+		transition:
+			border-color 180ms var(--ease-out),
+			transform 180ms var(--ease-out),
+			background 180ms var(--ease-out);
+	}
+
+	.letter-card:hover {
+		border-color: var(--accent);
+		transform: translateY(-3px);
+		background: rgba(109, 184, 154, 0.05);
+	}
+
+	.cover-wrap,
+	.cover-fallback {
+		height: 11rem;
+		overflow: hidden;
+		background: var(--paper-2);
+	}
+
+	.cover-wrap img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.cover-fallback {
+		display: grid;
+		place-items: center;
+		font-size: 2.5rem;
+		background:
+			radial-gradient(circle at 30% 30%, rgba(109, 184, 154, 0.2), transparent 55%),
+			var(--paper-2);
+	}
+
+	.body {
+		padding: var(--space-4) var(--space-5) var(--space-5);
+	}
+
+	.meta {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		margin-bottom: var(--space-2);
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		color: var(--ink-faint);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	h3 {
+		margin: 0 0 var(--space-2);
+		font-size: 1.35rem;
+	}
+
+	p {
+		margin: 0;
+		color: var(--ink-muted);
+		font-size: 1rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>

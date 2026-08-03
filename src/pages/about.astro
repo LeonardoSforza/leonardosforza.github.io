@@ -1,0 +1,39 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+	title="About"
+	description="About Leonardo Sforza and these letters."
+>
+	<section class="shell page prose motion-rise">
+		<p class="eyebrow">About</p>
+		<h1>Leonardo Sforza</h1>
+		<p>
+			These pages are my letters — a quieter way to share journeys, Sahaja work, and the things
+			that don’t fit in a feed.
+		</p>
+		<p>
+			I write locally with a Notion-like editor, then ship each change through git: branch,
+			commit, pull request, GitHub Pages.
+		</p>
+		<p>
+			<a href="/letters/">Read the letters →</a>
+		</p>
+	</section>
+</SiteLayout>
+
+<style>
+	.page {
+		padding-top: var(--space-8);
+	}
+
+	.eyebrow {
+		margin: 0 0 var(--space-2);
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+</style>

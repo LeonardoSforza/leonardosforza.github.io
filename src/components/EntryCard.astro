@@ -1,0 +1,105 @@
+---
+interface Props {
+	title: string;
+	href: string;
+	icon?: string;
+	date?: Date | string | null;
+	cover?: string | null;
+	index: number;
+	total: number;
+}
+
+const { title, href, icon = '📍', date, cover, index, total } = Astro.props;
+
+const dateLabel = date
+	? new Date(date).toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'short',
+			year: 'numeric',
+		})
+	: null;
+---
+
+<a class="entry-card" href={href}>
+	{
+		cover ? (
+			<img class="thumb" src={cover} alt="" loading="lazy" />
+		) : (
+			<span class="thumb-fallback" aria-hidden="true">
+				{icon}
+			</span>
+		)
+	}
+	<span class="copy">
+		<span class="index">Stop {index} of {total}</span>
+		<span class="title">{icon} {title}</span>
+		{dateLabel && <time datetime={new Date(date!).toISOString()}>{dateLabel}</time>}
+	</span>
+</a>
+
+<style>
+	.entry-card {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr;
+		gap: var(--space-4);
+		align-items: center;
+		padding: var(--space-3);
+		border: 1px solid var(--border);
+		border-radius: calc(var(--radius) + 4px);
+		text-decoration: none;
+		color: inherit;
+		background: rgba(255, 255, 255, 0.02);
+		transition:
+			border-color 180ms var(--ease-out),
+			background 180ms var(--ease-out);
+	}
+
+	.entry-card:hover {
+		border-color: var(--accent);
+		background: var(--accent-soft);
+	}
+
+	.thumb,
+	.thumb-fallback {
+		width: 5.5rem;
+		height: 4.25rem;
+		border-radius: var(--radius);
+		object-fit: cover;
+		background: var(--paper-3);
+	}
+
+	.thumb-fallback {
+		display: grid;
+		place-items: center;
+		font-size: 1.4rem;
+	}
+
+	.copy {
+		display: grid;
+		gap: 0.2rem;
+		min-width: 0;
+	}
+
+	.index {
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: var(--ink-faint);
+	}
+
+	.title {
+		font-family: var(--font-display);
+		font-size: 1.1rem;
+		font-weight: 600;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	time {
+		font-family: var(--font-ui);
+		font-size: 0.82rem;
+		color: var(--ink-muted);
+	}
+</style>

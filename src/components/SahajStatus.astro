@@ -1,0 +1,87 @@
+---
+/**
+ * Sahaj Work status — visual placeholder only.
+ * Future shape (not live yet):
+ * { date: string, kind: 'talk' | 'self-realization' | 'program' | 'other', note?: string }[]
+ */
+const cells = Array.from({ length: 52 }, (_, i) => ((i * 7) % 5 === 0 ? 2 : (i * 3) % 4 === 0 ? 1 : 0));
+---
+
+<aside class="sahaj" aria-label="Sahaj Work status placeholder">
+	<div class="sahaj-head">
+		<span class="sahaj-label">Sahaj Work</span>
+		<span class="sahaj-badge">Coming soon</span>
+	</div>
+	<div class="sahaj-graph" role="img" aria-label="Placeholder activity graph">
+		{
+			cells.map((level) => (
+				<span class:list={['cell', `l${level}`]} />
+			))
+		}
+	</div>
+	<p class="sahaj-copy">Talks, self-realization, and programs — tracked here later.</p>
+</aside>
+
+<style>
+	.sahaj {
+		width: min(100%, 22rem);
+		padding: var(--space-4);
+		border: 1px solid var(--border);
+		border-radius: calc(var(--radius) + 4px);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.sahaj-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		margin-bottom: var(--space-3);
+	}
+
+	.sahaj-label {
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		font-weight: 650;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+	}
+
+	.sahaj-badge {
+		font-family: var(--font-ui);
+		font-size: 0.72rem;
+		padding: 0.2rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid var(--border-strong);
+		color: var(--ink-faint);
+	}
+
+	.sahaj-graph {
+		display: grid;
+		grid-template-columns: repeat(26, 1fr);
+		gap: 3px;
+		margin-bottom: var(--space-3);
+	}
+
+	.cell {
+		aspect-ratio: 1;
+		border-radius: 2px;
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.cell.l1 {
+		background: rgba(109, 184, 154, 0.28);
+	}
+	.cell.l2 {
+		background: rgba(109, 184, 154, 0.55);
+	}
+
+	.sahaj-copy {
+		margin: 0;
+		font-family: var(--font-ui);
+		font-size: 0.8rem;
+		color: var(--ink-faint);
+		line-height: 1.4;
+	}
+</style>

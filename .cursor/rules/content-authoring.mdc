@@ -1,0 +1,31 @@
+---
+description: Letters and entries Markdoc content conventions
+globs: src/content/**/*.{mdoc,md,mdx}
+alwaysApply: false
+---
+
+# Content authoring
+
+## Collections
+
+- **letters** — `src/content/letters/*.mdoc` — long-form letter; `status: published | draft`
+- **entries** — `src/content/entries/*.mdoc` — stops inside a letter; require `letter` slug + `order`
+
+Frontmatter is owned by Keystatic schema in `keystatic.config.ts`. Keep fields in sync if you change the schema.
+
+## Markdoc
+
+Supported: headings, paragraphs, lists, links, images, tables, layouts, dividers.
+
+Custom tags:
+
+```markdoc
+{% video src="https://www.youtube.com/watch?v=ID" title="Caption" /%}
+{% callout type="note" %}Aside{% /callout %}
+```
+
+Images for a letter/entry should live under `public/letters/` or `public/entries/<slug>/` and be referenced with root-absolute paths (`/entries/...`).
+
+## Voice
+
+First-person letters. Prefer warmth over polish. Do not “correct” voice into corporate blog tone unless asked.

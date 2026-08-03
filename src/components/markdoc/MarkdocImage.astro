@@ -1,0 +1,32 @@
+---
+interface Props {
+	src: string;
+	alt?: string;
+}
+
+const { src, alt = '' } = Astro.props;
+---
+
+<figure class="md-image">
+	<img src={src} alt={alt} loading="lazy" />
+	{alt && <figcaption>{alt}</figcaption>}
+</figure>
+
+<style>
+	.md-image {
+		margin: var(--space-5) 0;
+	}
+
+	.md-image img {
+		width: 100%;
+		border-radius: var(--radius);
+	}
+
+	figcaption {
+		margin-top: var(--space-2);
+		font-family: var(--font-ui);
+		font-size: 0.85rem;
+		color: var(--ink-faint);
+		text-align: center;
+	}
+</style>

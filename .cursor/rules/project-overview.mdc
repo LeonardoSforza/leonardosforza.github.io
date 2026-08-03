@@ -1,0 +1,26 @@
+---
+description: Project overview — Leonardo Sforza letters site, stack, and git workflow
+alwaysApply: true
+---
+
+# Leonardo Sforza — Letters
+
+Personal letters site. Brand is **Leonardo Sforza** (logo at `public/brand/logo.svg`). Live URL: `https://leonardosforza.github.io/`.
+
+## Stack
+
+- Astro (static) + Markdoc + Keystatic local
+- Deploy: GitHub Actions → GitHub Pages (`dist/`)
+- Keystatic admin only in `npm run dev` at `/keystatic` — never rely on a production CMS
+
+## Content workflow
+
+1. Edit locally via `/keystatic` or `src/content/**/*.mdoc`
+2. Branch → commit → PR → merge
+3. Actions builds and deploys
+
+Do not invent a database, auth CMS, or email newsletter backend unless asked.
+
+## Sahaj Work
+
+Footer `SahajStatus` is a **placeholder**. Future event shape: `{ date, kind: 'talk' | 'self-realization' | 'program' | 'other', note? }`. Do not wire live tracking yet.

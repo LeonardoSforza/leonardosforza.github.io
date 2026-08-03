@@ -1,0 +1,163 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import EntryCard from '../../../components/EntryCard.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+	const letters = await getCollection('letters');
+	return letters
+		.filter((letter) => letter.data.status === 'published')
+		.map((letter) => ({
+			params: { letter: letter.id },
+			props: { letter },
+		}));
+}
+
+const { letter } = Astro.props;
+const { Content } = await render(letter);
+
+const entries = (await getCollection('entries'))
+	.filter((entry) => entry.data.letter === letter.id)
+	.sort((a, b) => a.data.order - b.data.order);
+---
+
+<SiteLayout
+	title={letter.data.title}
+	description={letter.data.summary || letter.data.title}
+	image={letter.data.cover || undefined}
+>
+	<article>
+		{
+			letter.data.cover && (
+				<div class="cover">
+					<img src={letter.data.cover} alt="" />
+				</div>
+			)
+		}
+
+		<header class="shell header motion-rise">
+			<p class="eyebrow">Letter</p>
+			<p class="icon" aria-hidden="true">{letter.data.icon}</p>
+			<h1>{letter.data.title}</h1>
+			{
+				letter.data.publishedAt && (
+					<time datetime={letter.data.publishedAt.toISOString()}>
+						{letter.data.publishedAt.toLocaleDateString('en-GB', {
+							day: 'numeric',
+							month: 'long',
+							year: 'numeric',
+						})}
+					</time>
+				)
+			}
+			{letter.data.summary && <p class="summary">{letter.data.summary}</p>}
+		</header>
+
+		<div class="prose motion-fade">
+			<Content />
+		</div>
+
+		{
+			entries.length > 0 && (
+				<section class="shell stops">
+					<div class="stops-head">
+						<h2>Journey</h2>
+						<p>{entries.length} stops</p>
+					</div>
+					<div class="stops-grid motion-stagger">
+						{entries.map((entry, i) => (
+							<EntryCard
+								title={entry.data.title}
+								href={`/letters/${letter.id}/${entry.id}/`}
+								icon={entry.data.icon}
+								date={entry.data.publishedAt}
+								cover={entry.data.cover}
+								index={i + 1}
+								total={entries.length}
+							/>
+						))}
+					</div>
+				</section>
+			)
+		}
+	</article>
+</SiteLayout>
+
+<style>
+	.cover {
+		width: 100%;
+		max-height: 42vh;
+		overflow: hidden;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.cover img {
+		width: 100%;
+		height: 42vh;
+		object-fit: cover;
+	}
+
+	.header {
+		padding-top: var(--space-7);
+		padding-bottom: var(--space-5);
+		max-width: var(--measure);
+		margin-inline: auto;
+	}
+
+	.eyebrow {
+		margin: 0;
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+
+	.icon {
+		margin: var(--space-3) 0 0;
+		font-size: 2.4rem;
+	}
+
+	time {
+		display: block;
+		margin-top: calc(-1 * var(--space-2));
+		font-family: var(--font-ui);
+		font-size: 0.9rem;
+		color: var(--ink-faint);
+	}
+
+	.summary {
+		margin-top: var(--space-4);
+		color: var(--ink-muted);
+		font-size: 1.15rem;
+	}
+
+	.stops {
+		margin-top: var(--space-8);
+		max-width: 52rem;
+	}
+
+	.stops-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--space-4);
+		margin-bottom: var(--space-5);
+	}
+
+	.stops-head h2 {
+		margin: 0;
+	}
+
+	.stops-head p {
+		margin: 0;
+		font-family: var(--font-ui);
+		font-size: 0.85rem;
+		color: var(--ink-faint);
+	}
+
+	.stops-grid {
+		display: grid;
+		gap: var(--space-3);
+	}
+</style>
